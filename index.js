@@ -74,6 +74,10 @@ restService.post('/reply', function (req, res) {
     }
 });
 
+restService.get('/', function (req, res) {
+    return "Hello and welcome.";
+});
+
 restService.listen((process.env.PORT || 8080), function () {
   console.log("Server up and running");
 });
