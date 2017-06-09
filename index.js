@@ -56,6 +56,7 @@ restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     if (action === "take.survey") {
         if (count >= questions.length) {
+            count = 0;
             return res.json({
                 speech: "That's all! Thank you for answering my questions.",
                 displayText: "That's all! Thank you for answering my questions.",
