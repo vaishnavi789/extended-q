@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -81,8 +81,8 @@ restService.get('/', function (req, res) {
 restService.listen((process.env.PORT || 8080), function () {
   console.log("Server up and running");
 });
-*/
 
+/*
 'use strict';
 
 const express = require('express');
@@ -215,3 +215,4 @@ restService.get('/', function (req, res) {
 restService.listen((process.env.PORT || 8080), function () {
   console.log("Server up and running");
 });
+*/
