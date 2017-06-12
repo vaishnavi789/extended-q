@@ -167,7 +167,7 @@ function takeSurvey(result) {
     }
     var responses = {
         "displayText": "",
-        "speech": "",
+        "speech": ""
     };
     /* PARAMETERS ***********************************************************/
     if (result.parameters.yesno === "yes") {
