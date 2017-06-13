@@ -5,27 +5,30 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-var questions = [
+var monitoring = [
+    {
+        question: "Okay, did you check your blood glucose level after eating?",
+        type: "yesno"
+    },
     {
         question: "What is your blood sugar level?",
         type: "number"
     },
     {
-        question: "Did you check your blood glucose level after eating?",
+        question: "Have you taken your medication today?",
         type: "yesno"
     },
     {
         question: "How many minutes have you exercised today?",
-        type: "number"
+        type: "duration"
     },
     {
-        question: "How often do you go outside of your room or home?",
-        type: "frequency"
-    },
-    {
-        question: "Have you taken your medication today?",
-        type: "yesno"
-    },
+        question: "How many pounds do you weigh today?",
+        type: "unit-weight"
+    }
+];
+
+var coping = [
     {
         question: "How often do you feel tense or wound up?",
         type: "frequency"
@@ -39,12 +42,17 @@ var questions = [
         type: "yesno"
     },
     {
+        question: "How often do you go outside of your room or home?",
+        type: "frequency"
+    },
+    {
         question: "Are you feeling tired or lonely?",
         type: "yesno"
     }
 ];
 
-var count = 0;
+var monitorCount = 0;
+var copingCount = 0;
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -54,17 +62,35 @@ restService.use(bodyParser.json());
 
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
-    if (action === "take.survey") {
-        if (count >= questions.length) {
-            count = 0;
+    if (action === "start.monitor") {
+        if (monitoringCount >= monitoring.length) {
+            monitorCount = 0;
+            return res.json({
+                speech: "I'll get this logged for you ASAP. Thanks for the info!",
+                displayText: "I'll get this logged for you ASAP. Thanks for the info!",
+                source: "survey-demo-app"
+            });
+        }
+        var text = monitoring[monitorCount].question;
+        monitorCount++;
+        console.log(text)
+        return res.json({
+            speech: text,
+            displayText: text,
+            source: "survey-demo-app"
+        });
+    }
+    else if (action === "start.coping") {
+        if (copingCount >= coping.length) {
+            copingCount = 0;
             return res.json({
                 speech: "That's all! Thank you for answering my questions.",
                 displayText: "That's all! Thank you for answering my questions.",
                 source: "survey-demo-app"
             });
         }
-        var text = questions[count].question;
-        count++;
+        var text = coping[copingCount].question;
+        copingCount++;
         console.log(text)
         return res.json({
             speech: text,
@@ -81,6 +107,7 @@ restService.get('/', function (req, res) {
 restService.listen((process.env.PORT || 8080), function () {
   console.log("Server up and running");
 });
+
 
 /*
 'use strict';
