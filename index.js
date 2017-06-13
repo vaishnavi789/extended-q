@@ -63,7 +63,7 @@ restService.use(bodyParser.json());
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     if (action === "start.monitor") {
-        if (monitoringCount >= monitoring.length) {
+        if (monitorCount >= monitoring.length) {
             monitorCount = 0;
             return res.json({
                 speech: "I'll get this logged for you ASAP. Thanks for the info!",
