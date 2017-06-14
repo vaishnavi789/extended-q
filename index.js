@@ -6,18 +6,18 @@ const bodyParser = require('body-parser');
 const restService = express();
 
 var monitoring = [
-    {
-        question: "Okay, did you check your blood glucose level after eating?",
-        type: "yesno"
-    },
+    //{
+    //    question: "Okay, did you check your blood glucose level after eating?",
+    //    type: "yesno"
+    //},
     {
         question: "What is your blood sugar level?",
         type: "number"
     },
-    {
-        question: "Have you taken your medication today?",
-        type: "yesno"
-    },
+    //{
+    //    question: "Have you taken your medication today?",
+    //    type: "yesno"
+    //},
     {
         question: "How many minutes have you exercised today?",
         type: "duration"
