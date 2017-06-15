@@ -66,7 +66,7 @@ var coping = [
 var monitorCount = 0;
 var copingCount = 0;
 
-var vegetables = ["chillies", "carrots", "cabbage"];
+var vegetables = ["chillies", "carrots", "cabbage", "eggplant", "cauliflower", "broccoli", "tomatoes", "spinach", "peppers"];
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -77,57 +77,62 @@ restService.use(bodyParser.json());
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     switch (action) {
-        case "start.monitor":
-            if (monitorCount >= monitoring.length) {
-                monitorCount = 0;
-                return res.json({
-                    speech: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
-                    displayText: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
-                    source: "survey-demo-app"
-                });
-            }
-            var text = monitoring[monitorCount].question;
-            monitorCount++;
-            console.log(text)
-            return res.json({
-                speech: text,
-                displayText: text,
-                source: "survey-demo-app"
-            });
-        case "start.coping":
-            if (copingCount >= coping.length) {
-                copingCount = 0;
-                return res.json({
-                    speech: "Thank you! That's all the questions. Is there anything else I can help you with?",
-                    displayText: "Thank you! That's all the questions. Is there anything else I can help you with?",
-                    source: "survey-demo-app"
-                });
-            }
-            var text = coping[copingCount].question;
-            copingCount++;
-            console.log(text)
-            return res.json({
-                speech: text,
-                displayText: text,
-                source: "survey-demo-app"
-            });
+      case "start.monitor":
+          if (monitorCount >= monitoring.length) {
+              monitorCount = 0;
+              return res.json({
+                  speech: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
+                  displayText: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
+                  source: "survey-demo-app"
+              });
+          }
+          var text = monitoring[monitorCount].question;
+          monitorCount++;
+          console.log(text)
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
+          break;
+      case "start.coping":
+          if (copingCount >= coping.length) {
+              copingCount = 0;
+              return res.json({
+                  speech: "Thank you! That's all the questions. Is there anything else I can help you with?",
+                  displayText: "Thank you! That's all the questions. Is there anything else I can help you with?",
+                  source: "survey-demo-app"
+              });
+          }
+          var text = coping[copingCount].question;
+          copingCount++;
+          console.log(text)
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
+          break;
 
-        case "food.plate":                
-            var decider = Math.random() * vegetables.length;
-            var index = Math.floor(decider);
-            var text = "I recommend adding " + vegetables[index] + " to your plate.";
-            return res.json({
-                speech: text,
-                displayText: text,
-                source: "survey-demo-app"
-            });
+      case "food.plate":
+          if (req.body.result.parameters.vegetables === null) {
+              var decider = Math.random() * vegetables.length;
+              var index = Math.floor(decider);
+              var text = "I recommend adding " + vegetables[index] + " to your plate.";
+              return res.json({
+                  speech: text,
+                  displayText: text,
+                  source: "survey-demo-app"
+              });
+          }
+          break;
 
-        default:
-            return res.json({
-                speech: "error",
-                displayText: "error",
-                source: "survey-demo-app"
-            });
+      default:
+          return res.json({
+              speech: "error",
+              displayText: "error",
+              source: "survey-demo-app"
+          });
     }
 });
 
