@@ -115,7 +115,7 @@ restService.post('/reply', function (req, res) {
           break;
 
       case "food.plate":
-          if (req.body.result.parameters.vegetables === null) {
+          if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
               var text = "I recommend adding " + vegetables[index] + " to your plate.";
