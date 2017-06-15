@@ -66,7 +66,7 @@ restService.post('/reply', function (req, res) {
         if (monitorCount >= monitoring.length) {
             monitorCount = 0;
             return res.json({
-                speech: "I'll get this logged for you ASAP. Thanks for the info!",
+                speech: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
                 displayText: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
                 source: "survey-demo-app"
             });
