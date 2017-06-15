@@ -90,8 +90,13 @@ restService.post('/reply', function (req, res) {
           }
           var text = monitoring[monitorCount].question;
           monitorCount++;
+          console.log(text)
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
           break;
-            
       case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
@@ -103,6 +108,12 @@ restService.post('/reply', function (req, res) {
           }
           var text = coping[copingCount].question;
           copingCount++;
+          console.log(text)
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
           break;
 
       case "food.plate":
@@ -113,7 +124,13 @@ restService.post('/reply', function (req, res) {
           var pDecider = Math.random() * proteins.length;
           var pIndex = Math.floor(pDecider);
           var text = "I recommend filling your plate with 1/4th of " + vegetables[vIndex]
-                + ", 1/4th of " + starches[sIndex] + " , and 1/2 of " + proteins[pIndex];
+                + ", 1/4th of " + starches[sIndex] + " , and 1/2 of " + proteins[pIndex]
+                + "If you want to change the plate, just say \"make another plate\".";;
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
@@ -154,11 +171,6 @@ restService.post('/reply', function (req, res) {
               source: "survey-demo-app"
           });
     }
-    return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
-          });
 });
 
 restService.get('/', function (req, res) {
