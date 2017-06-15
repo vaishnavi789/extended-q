@@ -114,7 +114,7 @@ restService.post('/reply', function (req, res) {
 
         case "food.plate":
             if (action === "food.plate") {
-                if (req.body.result.parameters.vegetables === null) {
+                
                     var decider = Math.random() * vegetables.length;
                     var index = Math.floor(decider);
                     var text = "I recommend adding " + vegetables[index] + " to your plate.";
@@ -123,7 +123,6 @@ restService.post('/reply', function (req, res) {
                         displayText: text,
                         source: "survey-demo-app"
                     });
-                }
             }
 
         default:
