@@ -67,6 +67,8 @@ var monitorCount = 0;
 var copingCount = 0;
 
 var vegetables = ["chillies", "carrots", "cabbage", "eggplant", "cauliflower", "broccoli", "tomatoes", "spinach", "peppers"];
+var starches = ["rice"];
+var proteins = ["chicken"];
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -115,7 +117,20 @@ restService.post('/reply', function (req, res) {
           break;
 
       case "food.plate":
-          if (!req.body.result.parameters.vegetables) {
+          var vDecider = Math.random() * vegetables.length;
+          var vIndex = Math.floor(vDecider);
+          var sDecider = Math.random() * starches.length;
+          var sIndex = Math.floor(sDecider);
+          var pDecider = Math.random() * proteins.length;
+          var pIndex = Math.floor(pDecider);
+          var text = "I recommend filling your plate with 1/4th of" + vegetables[vIndex] 
+                + ", 1/4th of " + starches[sIndex] + " , and 1/2 of " + proteins[pIndex];
+          return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
+          /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
               var text = "I recommend adding " + vegetables[index] + " to your plate.";
@@ -125,6 +140,27 @@ restService.post('/reply', function (req, res) {
                   source: "survey-demo-app"
               });
           }
+          else if (!req.body.result.parameters.main-dish-protein) {
+              var decider = Math.random() * protein.length;
+              var index = Math.floor(decider);
+              var text = "I recommend adding " + protein[index] + " to your plate.";
+              return res.json({
+                  speech: text,
+                  displayText: text,
+                  source: "survey-demo-app"
+              }); 
+          } 
+          else if (!req.body.result.parameters.starches) {
+              var decider = Math.random() * starches.length;
+              var index = Math.floor(decider);
+              var text = "I recommend adding " + starches[index] + " to your plate.";
+              return res.json({
+                  speech: text,
+                  displayText: text,
+                  source: "survey-demo-app"
+              }); 
+          }
+          */
           break;
 
       default:
