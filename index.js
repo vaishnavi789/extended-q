@@ -48,6 +48,18 @@ var coping = [
     {
         question: "Are you feeling tired or lonely?",
         type: "yesno"
+    },
+    {
+        question: "How often do you feel negative things about yourself?"
+        type: "frequency"
+    },
+    {
+        question: "Can you usually sit at ease and feel relaxed?"
+        type: "yesno"
+    },
+    {
+        question: "How often do you dwell on worrying thoughts?"
+        type: "frequency"
     }
 ];
 
