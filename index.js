@@ -67,8 +67,8 @@ var monitorCount = 0;
 var copingCount = 0;
 
 var vegetables = ["chillies", "carrots", "cabbage", "eggplant", "cauliflower", "broccoli", "tomatoes", "spinach", "peppers"];
-var starches = ["rice"];
-var proteins = ["chicken"];
+var starches = ["brown rice", "squash", "green peas", "yams", "sweet potato", "pasta", "potatoes"];
+var proteins = ["chicken", "beans", "fish", "crab", "shrimp", "eggs", "turkey", "beef", "pork"];
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -90,13 +90,8 @@ restService.post('/reply', function (req, res) {
           }
           var text = monitoring[monitorCount].question;
           monitorCount++;
-          console.log(text)
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
-          });
           break;
+            
       case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
@@ -108,12 +103,6 @@ restService.post('/reply', function (req, res) {
           }
           var text = coping[copingCount].question;
           copingCount++;
-          console.log(text)
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
-          });
           break;
 
       case "food.plate":
@@ -123,13 +112,8 @@ restService.post('/reply', function (req, res) {
           var sIndex = Math.floor(sDecider);
           var pDecider = Math.random() * proteins.length;
           var pIndex = Math.floor(pDecider);
-          var text = "I recommend filling your plate with 1/4th of" + vegetables[vIndex] 
+          var text = "I recommend filling your plate with 1/4th of " + vegetables[vIndex]
                 + ", 1/4th of " + starches[sIndex] + " , and 1/2 of " + proteins[pIndex];
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
-          });
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
@@ -148,8 +132,8 @@ restService.post('/reply', function (req, res) {
                   speech: text,
                   displayText: text,
                   source: "survey-demo-app"
-              }); 
-          } 
+              });
+          }
           else if (!req.body.result.parameters.starches) {
               var decider = Math.random() * starches.length;
               var index = Math.floor(decider);
@@ -158,7 +142,7 @@ restService.post('/reply', function (req, res) {
                   speech: text,
                   displayText: text,
                   source: "survey-demo-app"
-              }); 
+              });
           }
           */
           break;
@@ -170,6 +154,11 @@ restService.post('/reply', function (req, res) {
               source: "survey-demo-app"
           });
     }
+    return res.json({
+              speech: text,
+              displayText: text,
+              source: "survey-demo-app"
+          });
 });
 
 restService.get('/', function (req, res) {
