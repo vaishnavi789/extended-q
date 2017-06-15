@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-var monitoring = [
+var monitoring = [ //omitted yesno questions for now; cause issues when two intents reference the same entity.
     //{
     //    question: "Okay, did you check your blood glucose level after eating?",
-    //    type: "yesno"
-    //},
+    //    type: "yesno" 
+    //},  
     {
         question: "What is your blood sugar level?",
         type: "number"
