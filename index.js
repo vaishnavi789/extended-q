@@ -113,10 +113,9 @@ restService.post('/reply', function (req, res) {
             });
 
         case "food.plate":                
-            //var decider = Math.random() * vegetables.length;
-            //var index = Math.floor(decider);
-            //var text = "I recommend adding " + vegetables[index] + " to your plate.";
-            var text = "I recommend adding squash to your plate.";
+            var decider = Math.random() * vegetables.length;
+            var index = Math.floor(decider);
+            var text = "I recommend adding " + vegetables[index] + " to your plate.";
             return res.json({
                 speech: text,
                 displayText: text,
