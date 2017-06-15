@@ -50,15 +50,15 @@ var coping = [
         type: "yesno"
     },
     {
-        question: "How often do you feel negative things about yourself?"
+        question: "How often do you feel negative things about yourself?",
         type: "frequency"
     },
     {
-        question: "Can you usually sit at ease and feel relaxed?"
+        question: "Can you usually sit at ease and feel relaxed?",
         type: "yesno"
     },
     {
-        question: "How often do you dwell on worrying thoughts?"
+        question: "How often do you dwell on worrying thoughts?",
         type: "frequency"
     }
 ];
