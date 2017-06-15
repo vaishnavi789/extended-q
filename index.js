@@ -67,7 +67,7 @@ restService.post('/reply', function (req, res) {
             monitorCount = 0;
             return res.json({
                 speech: "I'll get this logged for you ASAP. Thanks for the info!",
-                displayText: "I'll get this logged for you ASAP. Thanks for the info!",
+                displayText: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
                 source: "survey-demo-app"
             });
         }
@@ -84,8 +84,8 @@ restService.post('/reply', function (req, res) {
         if (copingCount >= coping.length) {
             copingCount = 0;
             return res.json({
-                speech: "That's all! Thank you for answering my questions.",
-                displayText: "That's all! Thank you for answering my questions.",
+                speech: "Thank you! That's all the questions. Is there anything else I can help you with?",
+                displayText: "Thank you! That's all the questions. Is there anything else I can help you with?",
                 source: "survey-demo-app"
             });
         }
