@@ -123,8 +123,8 @@ restService.post('/reply', function (req, res) {
           var sIndex = Math.floor(sDecider);
           var pDecider = Math.random() * proteins.length;
           var pIndex = Math.floor(pDecider);
-          var text = "I recommend filling your plate with 1/4th of " + vegetables[vIndex]
-                + ", 1/4th of " + starches[sIndex] + " , and 1/2 of " + proteins[pIndex]
+          var text = "I recommend filling your plate with 1/2 of " + vegetables[vIndex]
+                + ", 1/4 of " + starches[sIndex] + " , and 1/4 of " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
           return res.json({
               speech: text,
