@@ -84,7 +84,7 @@ restService.post('/reply', function (req, res) {
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               text = "I'll get this logged for you ASAP. Is there anything else I can do for you?";
-              //break;
+              break;
           }
           text = monitoring[monitorCount].question;
           monitorCount++;
@@ -94,7 +94,7 @@ restService.post('/reply', function (req, res) {
           if (copingCount >= coping.length) {
               copingCount = 0;
               text = "Thank you! That's all the questions. Is there anything else I can help you with?";
-              //break;
+              break;
           }
           text = coping[copingCount].question;
           copingCount++;
