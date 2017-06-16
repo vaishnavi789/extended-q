@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-var monitoring = [ //omitted yesno questions for now; cause issues when two intents reference the same entity.
+var monitoring = [ //omitted yesno questions for now; causes issues when two intents reference the same entity.
     //{
     //    question: "Okay, did you check your blood glucose level after eating?",
     //    type: "yesno"
@@ -82,8 +82,8 @@ restService.post('/reply', function (req, res) {
     switch (action) {
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
-              monitorCount = 0;
               text = "I'll get this logged for you ASAP. Is there anything else I can do for you?";
+              monitorCount = 0;
           }
           text = monitoring[monitorCount].question;
           monitorCount++;
@@ -91,8 +91,8 @@ restService.post('/reply', function (req, res) {
             
       case "start.coping":
           if (copingCount >= coping.length) {
-              copingCount = 0;
               text = "Thank you! That's all the questions. Is there anything else I can help you with?";
+              copingCount = 0;
           }
           text = coping[copingCount].question;
           copingCount++;
@@ -109,7 +109,6 @@ restService.post('/reply', function (req, res) {
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
 
-    
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
@@ -129,7 +128,7 @@ restService.post('/reply', function (req, res) {
           break;
 
       default:
-          text = "error";
+          text = "Error. Could not find appropriate action.";
     }
       return res.json({
           speech: text,
