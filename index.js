@@ -78,16 +78,12 @@ restService.use(bodyParser.json());
 
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
-    var text
+    var text;
     switch (action) {
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
-              return res.json({
-                  speech: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
-                  displayText: "I'll get this logged for you ASAP. Is there anything else I can do for you?",
-                  source: "survey-demo-app"
-              });
+              text = "I'll get this logged for you ASAP. Is there anything else I can do for you?";
           }
           text = monitoring[monitorCount].question;
           monitorCount++;
@@ -97,10 +93,7 @@ restService.post('/reply', function (req, res) {
           if (copingCount >= coping.length) {
               copingCount = 0;
               return res.json({
-                  speech: "Thank you! That's all the questions. Is there anything else I can help you with?",
-                  displayText: "Thank you! That's all the questions. Is there anything else I can help you with?",
-                  source: "survey-demo-app"
-              });
+                  text = "Thank you! That's all the questions. Is there anything else I can help you with?";
           }
           text = coping[copingCount].question;
           copingCount++;
