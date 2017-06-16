@@ -78,6 +78,7 @@ restService.use(bodyParser.json());
 
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
+    var text
     switch (action) {
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
@@ -88,7 +89,7 @@ restService.post('/reply', function (req, res) {
                   source: "survey-demo-app"
               });
           }
-          var text = monitoring[monitorCount].question;
+          text = monitoring[monitorCount].question;
           monitorCount++;
           });
           break;
@@ -101,7 +102,7 @@ restService.post('/reply', function (req, res) {
                   source: "survey-demo-app"
               });
           }
-          var text = coping[copingCount].question;
+          text = coping[copingCount].question;
           copingCount++;
           });
           break;
@@ -113,7 +114,7 @@ restService.post('/reply', function (req, res) {
           var sIndex = Math.floor(sDecider);
           var pDecider = Math.random() * proteins.length;
           var pIndex = Math.floor(pDecider);
-          var text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
+          text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
           });
@@ -121,44 +122,32 @@ restService.post('/reply', function (req, res) {
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
-              var text = "I recommend adding " + vegetables[index] + " to your plate.";
-              return res.json({
-                  speech: text,
-                  displayText: text,
-                  source: "survey-demo-app"
+              text = "I recommend adding " + vegetables[index] + " to your plate.";
               });
           }
           else if (!req.body.result.parameters.main-dish-protein) {
               var decider = Math.random() * protein.length;
               var index = Math.floor(decider);
-              var text = "I recommend adding " + protein[index] + " to your plate.";
-              return res.json({
-                  speech: text,
-                  displayText: text,
-                  source: "survey-demo-app"
+              text = "I recommend adding " + protein[index] + " to your plate.";
               });
           }
           else if (!req.body.result.parameters.starches) {
               var decider = Math.random() * starches.length;
               var index = Math.floor(decider);
-              var text = "I recommend adding " + starches[index] + " to your plate.";
-              return res.json({
-                  speech: text,
-                  displayText: text,
-                  source: "survey-demo-app"
+              text = "I recommend adding " + starches[index] + " to your plate.";
               });
           }
           */
           break;
 
       default:
-          var text = "error";
+          text = "error";
           });
     }
       return res.json({
-      speech: text,
-      displayText: text,
-      source: "survey-demo-app"
+          speech: text,
+          displayText: text,
+          source: "survey-demo-app"
 });
 
 restService.get('/', function (req, res) {
