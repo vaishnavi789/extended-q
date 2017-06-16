@@ -11,7 +11,7 @@ var monitoring = [ //omitted yesno questions for now; cause issues when two inte
     //    type: "yesno"
     //},
     {
-        question: "What is your blood sugar level?",
+        question: "Okay, what is your blood sugar level?",
         type: "number"
     },
     //{
@@ -30,7 +30,7 @@ var monitoring = [ //omitted yesno questions for now; cause issues when two inte
 
 var coping = [
     {
-        question: "How often do you feel tense or wound up?",
+        question: "Okay, how often do you feel tense or wound up?",
         type: "frequency"
     },
     {
@@ -90,11 +90,6 @@ restService.post('/reply', function (req, res) {
           }
           var text = monitoring[monitorCount].question;
           monitorCount++;
-          console.log(text)
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
           });
           break;
       case "start.coping":
@@ -108,11 +103,6 @@ restService.post('/reply', function (req, res) {
           }
           var text = coping[copingCount].question;
           copingCount++;
-          console.log(text)
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
           });
           break;
 
@@ -126,11 +116,8 @@ restService.post('/reply', function (req, res) {
           var text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
-          return res.json({
-              speech: text,
-              displayText: text,
-              source: "survey-demo-app"
           });
+    
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
@@ -165,12 +152,13 @@ restService.post('/reply', function (req, res) {
           break;
 
       default:
-          return res.json({
-              speech: "error",
-              displayText: "error",
-              source: "survey-demo-app"
+          var text = "error";
           });
     }
+      return res.json({
+      speech: text,
+      displayText: text,
+      source: "survey-demo-app"
 });
 
 restService.get('/', function (req, res) {
