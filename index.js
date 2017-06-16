@@ -92,8 +92,7 @@ restService.post('/reply', function (req, res) {
       case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
-              return res.json({
-                  text = "Thank you! That's all the questions. Is there anything else I can help you with?";
+              text = "Thank you! That's all the questions. Is there anything else I can help you with?";
           }
           text = coping[copingCount].question;
           copingCount++;
