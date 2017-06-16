@@ -91,8 +91,8 @@ restService.post('/reply', function (req, res) {
           }
           text = monitoring[monitorCount].question;
           monitorCount++;
-          });
           break;
+            
       case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
@@ -104,7 +104,6 @@ restService.post('/reply', function (req, res) {
           }
           text = coping[copingCount].question;
           copingCount++;
-          });
           break;
 
       case "food.plate":
@@ -117,37 +116,33 @@ restService.post('/reply', function (req, res) {
           text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
-          });
+
     
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
               text = "I recommend adding " + vegetables[index] + " to your plate.";
-              });
           }
           else if (!req.body.result.parameters.main-dish-protein) {
               var decider = Math.random() * protein.length;
               var index = Math.floor(decider);
               text = "I recommend adding " + protein[index] + " to your plate.";
-              });
           }
           else if (!req.body.result.parameters.starches) {
               var decider = Math.random() * starches.length;
               var index = Math.floor(decider);
               text = "I recommend adding " + starches[index] + " to your plate.";
-              });
           }
           */
           break;
 
       default:
           text = "error";
-          });
     }
       return res.json({
           speech: text,
           displayText: text,
-          source: "survey-demo-app"
+          source: "survey-demo-app"});
 });
 
 restService.get('/', function (req, res) {
