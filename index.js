@@ -80,6 +80,7 @@ restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     var text;
     switch (action) {
+            
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
@@ -99,7 +100,8 @@ restService.post('/reply', function (req, res) {
           text = coping[copingCount].question;
           copingCount++;
           break;
-
+            
+      //dietary advice action based on the diabetes.org "food plate" page.
       case "food.plate":
           var vDecider = Math.random() * vegetables.length;
           var vIndex = Math.floor(vDecider);
@@ -110,7 +112,7 @@ restService.post('/reply', function (req, res) {
           text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
-
+          //Ignore this for now.
           /*if (!req.body.result.parameters.vegetables) {
               var decider = Math.random() * vegetables.length;
               var index = Math.floor(decider);
