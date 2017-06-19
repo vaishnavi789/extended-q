@@ -78,8 +78,12 @@ restService.use(bodyParser.json());
 
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
+    var previous_action = req.body.result.parameters.monitor-action;
     var text;
+    
     switch (action) {
+      case "previous.context":
+          action = previous_action;
             
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
