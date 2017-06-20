@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-var monitoring = [ //omitted yesno questions for now; causes issues when two intents reference the same entity.
+var monitoring = [ 
     {
            question: "Okay, did you check your blood glucose level after eating?",
            type: "yesno"
@@ -82,8 +82,8 @@ restService.post('/reply', function (req, res) {
     var text;
     
     switch (action) {
-//       case "previous.context":
-//           action = previous_action;
+      case "previous.context":
+          action = previous_action;
             
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
