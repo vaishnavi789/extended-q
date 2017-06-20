@@ -84,6 +84,7 @@ restService.post('/reply', function (req, res) {
     switch (action) {
       case "monitoring.continue":
           action = "start.monitor";
+          break;
             
       case "start.monitor":
           if (monitorCount >= monitoring.length) {
@@ -97,6 +98,7 @@ restService.post('/reply', function (req, res) {
             
       case "coping.continue":     
             action = "start.coping";
+            break;
             
       case "start.coping":
           if (copingCount >= coping.length) {
