@@ -95,6 +95,9 @@ restService.post('/reply', function (req, res) {
           monitorCount++;
           break;
             
+      case "coping.continue":     
+            action = "start.coping";
+            
       case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
