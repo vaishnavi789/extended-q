@@ -88,7 +88,6 @@ restService.post('/reply', function (req, res) {
             
         case "start.monitor":
           var answers = [];
-          //var answers = new Array(5);
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               sugarLevel = answers[1];
@@ -102,7 +101,7 @@ restService.post('/reply', function (req, res) {
           //var answers = req.body.parameters.keys;
           /*if (req.body.result && req.body.result.parameters && req.body.result.parameters.number) {
                 //json.getJSONObject(req.body.result.parameters).getInt("number")
-                answers.push(Number("req.body.result.parameters.number"));    
+                answers.push(req.body.result.parameters.number);    
           } */
             
           answers.push(req.body.result['resolvedQuery']);
