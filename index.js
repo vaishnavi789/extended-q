@@ -98,18 +98,20 @@ restService.post('/reply', function (req, res) {
           }
           text = monitoring[monitorCount].question;
           
-          //var answers = req.body.parameters.keys;
-          /*if (req.body.result && req.body.result.parameters && req.body.result.parameters.number) {
+            /*if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number != null) {
+                answers.push(req.body.result.parameters.number); 
+            }*/
+
+            //var answers = req.body.parameters.keys;
+            /*if (req.body.result && req.body.result.parameters && req.body.result.parameters.number) {
                 //json.getJSONObject(req.body.result.parameters).getInt("number")
                 answers.push(req.body.result.parameters.number);    
-          } */
+            } */
             
           //answers.push(JSON.stringify(req.body.result.resolvedQuery));
           //answers.push(req.body.result['resolvedQuery']);  
             
-            if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number != null) {
-                answers.push(req.body.result.parameters.number); 
-            }
+            
                 
           monitorCount++;
           break;
