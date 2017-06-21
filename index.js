@@ -122,10 +122,15 @@ restService.post('/reply', function (req, res) {
           break;
             
         case "restart": 
-          monitorCount = 0;
-          copingCount = 0;
-          text = "Sure thing. I've reset all the surveys so you can start from the beginning. What would you like to do now?";  
+           monitorCount = 0;
+           copingCount = 0;
+           text = "Sure thing. I've reset all the surveys so you can start from the beginning. What would you like to do now?";  
            break;
+        
+        case "help":
+            text = "I can assist you with monitoring your health, emotional coping with your diabetes, and food recommendations."
+                +   " Just say any of the key words and we can get started!";
+            
         default:
           text = "Error. Could not find appropriate action.";
     }
