@@ -96,7 +96,7 @@ restService.post('/reply', function (req, res) {
           }
           text = monitoring[monitorCount].question;
             
-            if (req.body.result.parameters.hasOwnProperty("number") {
+            if ("number" in req.body.result.parameters.hasOwnProperty) {
                 sugarLevel = req.body.result.parameters.number;
             }
             
