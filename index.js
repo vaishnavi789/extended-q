@@ -100,8 +100,8 @@ restService.post('/reply', function (req, res) {
           text = monitoring[monitorCount].question;
           
           //var answers = req.body.parameters.keys;
-          if ("number" in req.body.result.parameters) {
-                answers.push(req.body.result.parameters.number);
+          if (!req.body.result.parameters.number || req.body.result.parameters.number.length == 0) {
+                answers.push(Number("req.body.result.parameters.number"));
           } 
             
           monitorCount++;
