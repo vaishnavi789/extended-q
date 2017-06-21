@@ -130,6 +130,7 @@ restService.post('/reply', function (req, res) {
         case "help":
             text = "I can assist you with monitoring your health, emotional coping with your diabetes, and food recommendations."
                 +   " Just say any of the key words and we can get started!";
+            break;
             
         default:
           text = "Error. Could not find appropriate action.";
