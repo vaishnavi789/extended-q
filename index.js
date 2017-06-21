@@ -90,7 +90,7 @@ restService.post('/reply', function (req, res) {
           var answers = [];
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
-              sugarLevel = answers[1];
+              sugarLevel = answers[0];
           
               text = "I'll get this logged for you ASAP. " 
                 + "Your glucose level of " + sugarLevel + " is too high. " + 
@@ -100,7 +100,7 @@ restService.post('/reply', function (req, res) {
           text = monitoring[monitorCount].question;
           
           //var answers = req.body.parameters.keys;
-          if (!req.body.result.parameters.number || req.body.result.parameters.number.length == 0) {
+          if (req.body.result.parameters.number) {
                 answers.push(Number("req.body.result.parameters.number"));
           } 
             
