@@ -87,8 +87,8 @@ restService.post('/reply', function (req, res) {
           action = "start.monitor";
             
         case "start.monitor":
-          //var answers = [];
-          var answers = new Array(5);
+          var answers = [];
+          //var answers = new Array(5);
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               sugarLevel = answers[1];
