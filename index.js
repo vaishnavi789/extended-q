@@ -80,7 +80,7 @@ restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     //var previous_action = req.body.result.parameters.monitorAction;
     var text;
-    var sugarLevel = 0;
+    var sugarLevel = "";
     
     switch (action) {
         case "monitoring.continue":
