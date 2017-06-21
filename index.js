@@ -104,8 +104,8 @@ restService.post('/reply', function (req, res) {
                 answers.push(req.body.result.parameters.number);    
           } */
             
-          answers.push(req.body.result['resolvedQuery']);
-            
+          answers.push(JSON.stringify(req.body.result.resolvedQuery));
+          //answers.push(req.body.result['resolvedQuery']);  
           monitorCount++;
           break;
             
