@@ -107,7 +107,7 @@ restService.post('/reply', function (req, res) {
           //answers.push(JSON.stringify(req.body.result.resolvedQuery));
           //answers.push(req.body.result['resolvedQuery']);  
             
-            if ("number" in req.body.parameters.number) {
+            if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number != null) {
                 answers.push(req.body.result.parameters.number); 
             }
                 
