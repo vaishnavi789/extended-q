@@ -82,10 +82,10 @@ restService.post('/reply', function (req, res) {
     var text;
     
     switch (action) {
-      case "monitoring.continue":
+        case "monitoring.continue":
           action = "start.monitor";
             
-      case "start.monitor":
+        case "start.monitor":
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               text = "I'll get this logged for you ASAP. What else can I do for you?";
@@ -95,10 +95,10 @@ restService.post('/reply', function (req, res) {
           monitorCount++;
           break;
             
-      case "coping.continue":     
+        case "coping.continue":     
             action = "start.coping";
             
-      case "start.coping":
+        case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
               text = "Thank you! That's all the questions. What else can I help you with?";
@@ -109,7 +109,7 @@ restService.post('/reply', function (req, res) {
           break;
             
       //dietary advice action based on the diabetes.org "food plate" page.
-      case "food.plate":
+        case "food.plate":
           var vDecider = Math.random() * vegetables.length;
           var vIndex = Math.floor(vDecider);
           var sDecider = Math.random() * starches.length;
@@ -119,26 +119,14 @@ restService.post('/reply', function (req, res) {
           text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
                 + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
                 + ". If you want to change the plate, just say \"make another plate\".";;
-          //Ignore this for now.
-          /*if (!req.body.result.parameters.vegetables) {
-              var decider = Math.random() * vegetables.length;
-              var index = Math.floor(decider);
-              text = "I recommend adding " + vegetables[index] + " to your plate.";
-          }
-          else if (!req.body.result.parameters.main-dish-protein) {
-              var decider = Math.random() * protein.length;
-              var index = Math.floor(decider);
-              text = "I recommend adding " + protein[index] + " to your plate.";
-          }
-          else if (!req.body.result.parameters.starches) {
-              var decider = Math.random() * starches.length;
-              var index = Math.floor(decider);
-              text = "I recommend adding " + starches[index] + " to your plate.";
-          }
-          */
           break;
-
-      default:
+            
+        case "restart": 
+          monitorCount = 0;
+          copingCount = 0;
+          text = "Sure thing. I've reset all the surveys so you can start from the beginning. What would you like to do now?";  
+           break;
+        default:
           text = "Error. Could not find appropriate action.";
     }
       return res.json({
