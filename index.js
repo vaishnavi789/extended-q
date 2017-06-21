@@ -80,6 +80,7 @@ restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     //var previous_action = req.body.result.parameters.monitorAction;
     var text;
+    var sugarLevel;
     
     switch (action) {
         case "monitoring.continue":
@@ -88,10 +89,17 @@ restService.post('/reply', function (req, res) {
         case "start.monitor":
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
-              text = "I'll get this logged for you ASAP. What else can I do for you?";
+              text = "I'll get this logged for you ASAP. " 
+                + "Your glucose level of " + sugarLevel + " is too high. " + 
+                + "What else can I do for you?";
               break;
           }
           text = monitoring[monitorCount].question;
+            
+            if (req.body.result.parameters.hasOwnProperty("number") {
+                sugarLevel = req.body.result.parameters.number;
+            }
+            
           monitorCount++;
           break;
             
