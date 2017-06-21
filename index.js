@@ -92,7 +92,7 @@ restService.post('/reply', function (req, res) {
               monitorCount = 0;
               //sugarLevel = answers[0];
               text = "I'll get this logged for you ASAP. " 
-                + "Your glucose level of " + sugarLevel + " is too high. " + 
+                + "Your glucose level of " + sugarLevel + " is too high. " 
                 + "What else can I do for you?";
               break;
           }
