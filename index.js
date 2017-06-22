@@ -130,7 +130,7 @@ restService.post('/reply', function (req, res) {
           text = coping[copingCount].question;
 
           if (req.body.result.parameters.frequency.length != 0) {
-                copeAnswers.push(req.body.result.parameters.number);
+                copeAnswers.push(req.body.result.parameters.frequency);
           } else if (req.body.result.parameters.yesno.length != 0) {
                 copeAnswers.push(req.body.result.parameters.yesno);
           }
