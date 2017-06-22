@@ -101,7 +101,7 @@ restService.post('/reply', function (req, res) {
               console.log(ate);
               console.log(answers);
               text = "I'll get this logged for you ASAP. " 
-                +  monitorResult(sugarLevel, exercise, weight)
+                +  monitorResult(ate, sugarLevel, exercise, weight)
                 + "What else can I do for you?";
               break;
           }
