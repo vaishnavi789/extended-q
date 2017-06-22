@@ -7,7 +7,7 @@ const restService = express();
 
 var monitoring = [ 
     {
-        question: "Okay, did you check your blood glucose level after eating?",
+        question: "Okay, have you eaten within the past 90 minutes?",
         type: "yesno"
     },
     {
@@ -90,7 +90,7 @@ restService.post('/reply', function (req, res) {
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               
-              var checkedGlucose = answers[1];
+              var ate = answers[1];
               var sugarLevel = answers[2];
               var medication = answers[3];
               var exercise = answers[4];
@@ -160,12 +160,18 @@ restService.post('/reply', function (req, res) {
           source: "survey-demo-app"});
 });
 
-function monitorResult (sugar, exercise, weight) {
+function monitorResult (ate, sugar, exercise, weight) {
     var result = "";
-    if (sugar >= 8.5) {
-        result += "Your blood sugar level of " + sugar + " is rather high.";
+    if (ate.equals("yes") && sugar >= 8.5) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate.equals("yes") && sugar < 8.5) {
+        result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
+    } else if (ate.equals("no") && sugar > 7) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate.equals("no") && sugar >= 4 && sugar <= 7) {
+        result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
     } else {
-        result += "Your blood sugar level of " + sugar + " is normal. Keep it up!";
+        result += "Your blood sugar is too low. Eat a small amount of carbs"; 
     }
     
     return result;
