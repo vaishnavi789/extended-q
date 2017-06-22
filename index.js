@@ -88,6 +88,7 @@ restService.post('/reply', function (req, res) {
             
         case "start.monitor":
           if (monitorCount >= monitoring.length) {
+              answers.push(req.body.result.resolvedQuery);  
               monitorCount = 0;
               
               var ate = answers[1];
@@ -96,6 +97,8 @@ restService.post('/reply', function (req, res) {
               var exercise = answers[4];
               var weight = answers[5];
               
+              console.log(sugarLevel);
+              console.log(ate);
               console.log(answers);
               text = "I'll get this logged for you ASAP. " 
                 +  monitorResult(sugarLevel, exercise, weight)
@@ -171,7 +174,7 @@ function monitorResult (ate, sugar, exercise, weight) {
     } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
         result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
     } else {
-        result += "Your blood sugar is too low. Eat a small amount of carbs"; 
+        result += "Your blood sugar is too low. I suggest eating a small amount of carbs. "; 
     }
     
     return result;
