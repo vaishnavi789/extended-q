@@ -162,13 +162,13 @@ restService.post('/reply', function (req, res) {
 
 function monitorResult (ate, sugar, exercise, weight) {
     var result = "";
-    if (ate.equals("yes") && sugar >= 8.5) {
+    if (ate == "yes" && sugar >= 8.5) {
         result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate.equals("yes") && sugar < 8.5) {
+    } else if (ate == "yes" && sugar < 8.5) {
         result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
-    } else if (ate.equals("no") && sugar > 7) {
+    } else if (ate == "no" && sugar > 7) {
         result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate.equals("no") && sugar >= 4 && sugar <= 7) {
+    } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
         result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
     } else {
         result += "Your blood sugar is too low. Eat a small amount of carbs"; 
