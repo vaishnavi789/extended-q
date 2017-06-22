@@ -121,7 +121,8 @@ restService.post('/reply', function (req, res) {
         case "start.coping":
           if (copingCount >= coping.length) {
               copingCount = 0;
-
+               
+              console.log(copeAnswers);
               text = "Thank you for answering my questions. ";
                 //+ copingResults(copeAnswers);
               break;
