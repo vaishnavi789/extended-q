@@ -108,9 +108,9 @@ restService.post('/reply', function (req, res) {
           }
           text = monitoring[monitorCount].question;
           
-          if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number.length != 0) {
+          if (req.body.parameters.number.length != 0) {
                 answers.push(req.body.result.parameters.number); 
-          } else if (req.body.parameters.number.hasOwnProperty("yesno") && req.body.parameters.number.length != 0 {
+          } else if (req.body.parameters.number.length != 0 {
                 answers.push(req.body.result.parameters.yesno);            
           }
             
