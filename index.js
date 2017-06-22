@@ -42,11 +42,11 @@ var coping = [
         type: "yesno"
     },
     {
-        question: "How often do you go outside of your room or home?",
+        question: "Do you frequently leave your room or home?",
         type: "frequency"
     },
     {
-        question: "Are you feeling tired or lonely?",
+        question: "Do you feel lonley?",
         type: "yesno"
     },
     {
@@ -197,25 +197,30 @@ function monitorResult (ate, sugar, exercise, weight) {
 
     return result;
 }
-/*
+
 function copingResult (answers) {
     var score = 0;
     var result = "";
     for (int = 0; i < answers.length; i++) {
-        if (answers[i] == "yes") {
-            score++;
+        if (answers[i] == "no") {
+            score += 2;
         } else if (answers[i] == "often") {
-            score++;
+            score += 2;
+        } else if (answers[i] == "sometimes") {
+            score += 1;
         }
     }
     
-    if (score > 19 && score <= 27) {
+    if (score > 11 && score <= 16) {
         result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
+    } else if (score >= 6 & score =< 11) {
+        result += "";
+    } else {
+        result += "";
     }
     
     return result;
 }
-*/
 
 restService.get('/', function (req, res) {
     return "Hello and welcome.";
