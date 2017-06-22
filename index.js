@@ -142,6 +142,7 @@ restService.post('/reply', function (req, res) {
         case "restart": 
            monitorCount = 0;
            copingCount = 0;
+           answers = [];
            text = "Sure thing. I've reset all the surveys so you can start from the beginning. What would you like to do now?";  
            break;
         
