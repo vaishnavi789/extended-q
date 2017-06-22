@@ -111,7 +111,7 @@ restService.post('/reply', function (req, res) {
             
           //answers.push(JSON.stringify(req.body.result.resolvedQuery));
           answers.push(req.body.result.resolvedQuery);  
- 
+           console.log(req.body.result.parameters);
                 
           monitorCount++;
           break;
