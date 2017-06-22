@@ -90,7 +90,11 @@ restService.post('/reply', function (req, res) {
 
         case "start.monitor":
           if (monitorCount >= monitoring.length) {
-              monitorAnswers.push(req.body.result.resolvedQuery);
+              if (req.body.result.parameters.number.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.number);
+              } else if (req.body.result.parameters.yesno.length != 0) {
+                monitorAnswers.push(req.body.result.parameters.yesno);
+              }
               monitorCount = 0;
 
               var ate = monitorAnswers[0];
@@ -120,6 +124,11 @@ restService.post('/reply', function (req, res) {
 
         case "start.coping":
           if (copingCount >= coping.length) {
+              if (req.body.result.parameters.frequency.length != 0) {
+                copeAnswers.push(req.body.result.parameters.frequency);
+             } else if (req.body.result.parameters.yesno.length != 0) {
+                copeAnswers.push(req.body.result.parameters.yesno);
+             }
               copingCount = 0;
                
               console.log(copeAnswers);
