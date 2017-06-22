@@ -92,11 +92,11 @@ restService.post('/reply', function (req, res) {
               answers.push(req.body.result.resolvedQuery);  
               monitorCount = 0;
               
-              var ate = answers[1];
-              var sugarLevel = answers[2];
-              var medication = answers[3];
-              var exercise = answers[4];
-              var weight = answers[5];
+              var ate = answers[0];
+              var sugarLevel = answers[1];
+              var medication = answers[2];
+              var exercise = answers[3];
+              var weight = answers[4];
               
               console.log(sugarLevel);
               console.log(ate);
