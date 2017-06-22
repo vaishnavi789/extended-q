@@ -110,7 +110,7 @@ restService.post('/reply', function (req, res) {
           
           if (req.body.result.parameters.number.length != 0) {
                 answers.push(req.body.result.parameters.number); 
-          } else if (req.body.parameters.result.yesno.length != 0) {
+          } else if (req.body.result.parameters.yesno.length != 0) {
                 answers.push(req.body.result.parameters.yesno);            
           }
             
