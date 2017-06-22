@@ -69,6 +69,7 @@ var copingCount = 0;
 var vegetables = ["chillies", "carrots", "cabbage", "eggplant", "cauliflower", "broccoli", "tomatoes", "spinach", "peppers"];
 var starches = ["brown rice", "squash", "green peas", "yams", "sweet potato", "pasta", "potatoes"];
 var proteins = ["chicken", "beans", "fish", "crab", "shrimp", "eggs", "turkey", "beef", "pork"];
+var answers = [];
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -87,7 +88,6 @@ restService.post('/reply', function (req, res) {
           action = "start.monitor";
             
         case "start.monitor":
-          var answers = [];
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
               sugarLevel = answers[1];
