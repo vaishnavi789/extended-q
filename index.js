@@ -7,8 +7,8 @@ const restService = express();
 
 var monitoring = [ 
     {
-           question: "Okay, did you check your blood glucose level after eating?",
-           type: "yesno"
+        question: "Okay, did you check your blood glucose level after eating?",
+        type: "yesno"
     },
     {
         question: "Okay, what is your blood sugar level?",
@@ -81,7 +81,6 @@ restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
     //var previous_action = req.body.result.parameters.monitorAction;
     var text;
-    var sugarLevel = "";
     
     switch (action) {
         case "monitoring.continue":
@@ -90,10 +89,16 @@ restService.post('/reply', function (req, res) {
         case "start.monitor":
           if (monitorCount >= monitoring.length) {
               monitorCount = 0;
-              sugarLevel = answers[1];
+              
+              var checkedGlucose = answers[1];
+              var sugarLevel = answers[2];
+              var medication = answers[3];
+              var exercise = answers[4];
+              var weight = answers[5];
+              
               console.log(answers);
               text = "I'll get this logged for you ASAP. " 
-                + "Your glucose level of " + sugarLevel + " is too high. " 
+                +  monitorResult(sugarLevel, exercise, weight)
                 + "What else can I do for you?";
               break;
           }
@@ -102,16 +107,8 @@ restService.post('/reply', function (req, res) {
             /*if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number != null) {
                 answers.push(req.body.result.parameters.number); 
             }*/
-
-            //var answers = req.body.parameters.keys;
-            /*if (req.body.result && req.body.result.parameters && req.body.result.parameters.number) {
-                //json.getJSONObject(req.body.result.parameters).getInt("number")
-                answers.push(req.body.result.parameters.number);    
-            } */
             
-          //answers.push(JSON.stringify(req.body.result.resolvedQuery));
           answers.push(req.body.result.resolvedQuery);  
-           console.log(req.body.result.parameters);
                 
           monitorCount++;
           break;
@@ -161,6 +158,17 @@ restService.post('/reply', function (req, res) {
           displayText: text,
           source: "survey-demo-app"});
 });
+
+function monitorResult (sugar, exercise, weight) {
+    var result = "";
+    if (sugar >= 8.5) {
+        result += "Your blood sugar level of " + sugar + " is rather high.";
+    } else {
+        result += "Your blood sugar level of " + sugar + " is normal. Keep it up!";
+    }
+    
+    return result;
+}
 
 restService.get('/', function (req, res) {
     return "Hello and welcome.";
