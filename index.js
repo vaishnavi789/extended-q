@@ -85,6 +85,7 @@ restService.post('/reply', function (req, res) {
     switch (action) {
         case "monitoring.continue":
           action = "start.monitor";
+           
             
         case "start.monitor":
           if (monitorCount >= monitoring.length) {
@@ -107,11 +108,13 @@ restService.post('/reply', function (req, res) {
           }
           text = monitoring[monitorCount].question;
           
-            /*if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number != null) {
+          if (req.body.parameters.number.hasOwnProperty("number") && req.body.parameters.number.length != 0) {
                 answers.push(req.body.result.parameters.number); 
-            }*/
+          } else if (req.body.parameters.number.hasOwnProperty("yesno") && req.body.parameters.number.length != 0 {
+                answers.push(req.body.result.parameters.yesno);            
+          }
             
-          answers.push(req.body.result.resolvedQuery);  
+          //answers.push(req.body.result.resolvedQuery);  
                 
           monitorCount++;
           break;
