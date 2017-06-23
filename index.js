@@ -213,7 +213,7 @@ function copingResult (answers) {
     
     if (score > 11 && score <= 16) {
         result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
-    } else if (score >= 6 & score =< 11) {
+    } else if (score >= 6 && score =< 11) {
         result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
     } else {
         result += "You seem to be doing all right! I'm glad.";
