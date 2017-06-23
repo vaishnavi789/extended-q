@@ -94,8 +94,8 @@ admin.initializeApp({
 var monitoring = [];
 //var coping = [];
 
-var mon = admin.database().ref("/").child('monitoring');
-mon.on("value", function(snapshot) {
+var ref = admin.database().ref("/").child('monitoring');
+ref.on("value", function(snapshot) {
   var obj = snapshot.val();
   for (var i in obj ) {
          monitoring.push(obj[i]);
