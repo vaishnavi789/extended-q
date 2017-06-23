@@ -132,8 +132,8 @@ restService.post('/reply', function (req, res) {
               copingCount = 0;
                
               console.log(copeAnswers);
-              text = "Thank you for answering my questions. ";
-                //+ copingResults(copeAnswers);
+              text = "Thank you for answering my questions. "
+                + copingResults(copeAnswers);
               break;
           }
           text = coping[copingCount].question;
