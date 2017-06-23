@@ -103,6 +103,7 @@ mon.on("value", function(snapshot) {
 }, function (errorObject) {
 console.log("The read failed: " + errorObject.code);
 });
+console.log(monitoring);
 
 var coping = [
     {
@@ -152,6 +153,7 @@ for (var i in obj ) {
 }, function (errorObject) {
 console.log("The read failed: " + errorObject.code);
 });
+console.log(vegetables);
 
 var pro = admin.database().ref("/").child('proteins');
 pro.on("value", function(snapshot) {
@@ -162,6 +164,7 @@ for (var i in obj ) {
 }, function (errorObject) {
 console.log("The read failed: " + errorObject.code);
 });
+console.log(proteins);
 
 var starch = admin.database().ref("/").child('starches');
 starch.on("value", function(snapshot) {
@@ -172,6 +175,8 @@ starch.on("value", function(snapshot) {
 }, function (errorObject) {
 console.log("The read failed: " + errorObject.code);
 });
+console.log(starches);
+
 
 var monitorCount = 0;
 var copingCount = 0;
