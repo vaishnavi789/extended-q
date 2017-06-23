@@ -95,7 +95,7 @@ var monitoring = [];
 //var coping = [];
 
 var mon = admin.database().ref("/").child('monitoring');
-ref.on("value", function(snapshot) {
+mon.on("value", function(snapshot) {
   var obj = snapshot.val();
   for (var i in obj ) {
          monitoring.push(obj[i]);
@@ -144,27 +144,27 @@ var starches = [];
 var proteins = [];
 
 var veg = admin.database().ref("/").child('vegetables');
-  ref.on("value", function(snapshot) {
-    var obj = snapshot.val();
-    for (var i in obj ) {
-           vegetables.push(obj[i]);
-    }
-  }, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-  });
+veg.on("value", function(snapshot) {
+var obj = snapshot.val();
+for (var i in obj ) {
+       vegetables.push(obj[i]);
+}
+}, function (errorObject) {
+console.log("The read failed: " + errorObject.code);
+});
 
 var pro = admin.database().ref("/").child('proteins');
-  ref.on("value", function(snapshot) {
-    var obj = snapshot.val();
-    for (var i in obj ) {
-           proteins.push(obj[i]);
-    }
-  }, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-  });
+pro.on("value", function(snapshot) {
+var obj = snapshot.val();
+for (var i in obj ) {
+       proteins.push(obj[i]);
+}
+}, function (errorObject) {
+console.log("The read failed: " + errorObject.code);
+});
 
 var starch = admin.database().ref("/").child('starches');
-ref.on("value", function(snapshot) {
+starch.on("value", function(snapshot) {
   var obj = snapshot.val();
   for (var i in obj ) {
          starches.push(obj[i]);
