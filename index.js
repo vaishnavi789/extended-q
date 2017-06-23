@@ -201,7 +201,7 @@ function monitorResult (ate, sugar, exercise, weight) {
 function copingResult (answers) {
     var score = 0;
     var result = "";
-    for (int i = 0; i < answers.length; i++) {
+    for (i = 0; i < answers.length; i++) {
         if (answers[i] == "no") {
             score += 2;
         } else if (answers[i] == "often") {
