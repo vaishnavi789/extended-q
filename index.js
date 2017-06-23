@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -71,6 +71,114 @@ var starches = ["brown rice", "squash", "green peas", "yams", "sweet potato", "p
 var proteins = ["chicken", "beans", "fish", "crab", "shrimp", "eggs", "turkey", "beef", "pork"];
 var monitorAnswers = [];
 var copeAnswers = [];
+
+restService.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+restService.use(bodyParser.json());
+*/
+
+'use strict';
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const admin = require("firebase-admin");
+const serviceAccount = require("./healthycoping-f6c2f-firebase-adminsdk-2k6pw-29793bc767.json");
+
+admin.initializeApp({
+ credential: admin.credential.cert(serviceAccount),
+ databaseURL: "https://healthycoping-f6c2f.firebaseio.com/"
+});
+
+var monitoring = [];
+//var coping = [];
+
+var mon = admin.database().ref("/").child('monitoring');
+ref.on("value", function(snapshot) {
+  var obj = snapshot.val();
+  for (var i in obj ) {
+         monitoring.push(obj[i]);
+  }
+}, function (errorObject) {
+console.log("The read failed: " + errorObject.code);
+});
+
+var coping = [
+    {
+        question: "Okay, how often do you feel tense or wound up?",
+        type: "frequency"
+    },
+    {
+        question: "How often do you experience loneliness?",
+        type: "frequency"
+    },
+    {
+        question: "Have you socialized with anyone today?",
+        type: "yesno"
+    },
+    {
+        question: "Do you feel motivated to go about your day?",
+        type: "yesno"
+    },
+    {
+        question: "Do you frequently leave your room or home?",
+        type: "yesno"
+    },
+    {
+        question: "How often do you feel negative things about yourself?",
+        type: "frequency"
+    },
+    {
+        question: "Can you sit at ease and feel relaxed?",
+        type: "yesno"
+    },
+    {
+        question: "How often do you dwell on worrying thoughts?",
+        type: "frequency"
+    }
+];
+
+var vegetables = [];
+var starches = [];
+var proteins = [];
+
+var veg = admin.database().ref("/").child('vegetables');
+  ref.on("value", function(snapshot) {
+    var obj = snapshot.val();
+    for (var i in obj ) {
+           vegetables.push(obj[i]);
+    }
+  }, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+  });
+
+var pro = admin.database().ref("/").child('proteins');
+  ref.on("value", function(snapshot) {
+    var obj = snapshot.val();
+    for (var i in obj ) {
+           proteins.push(obj[i]);
+    }
+  }, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+  });
+
+var starch = admin.database().ref("/").child('starches');
+ref.on("value", function(snapshot) {
+  var obj = snapshot.val();
+  for (var i in obj ) {
+         starches.push(obj[i]);
+  }
+}, function (errorObject) {
+console.log("The read failed: " + errorObject.code);
+});
+
+var monitorCount = 0;
+var copingCount = 0;
+var monitorAnswers = [];
+var copeAnswers = [];
+
+const restService = express();
 
 restService.use(bodyParser.urlencoded({
     extended: true
