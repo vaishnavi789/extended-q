@@ -34,6 +34,10 @@ var coping = [
         type: "frequency"
     },
     {
+        question: "How often do you experience loneliness?",
+        type: "frequency"
+    },
+    {
         question: "Have you socialized with anyone today?",
         type: "yesno"
     },
@@ -43,10 +47,6 @@ var coping = [
     },
     {
         question: "Do you frequently leave your room or home?",
-        type: "frequency"
-    },
-    {
-        question: "Do you feel lonley?",
         type: "yesno"
     },
     {
@@ -134,6 +134,7 @@ restService.post('/reply', function (req, res) {
               console.log(copeAnswers);
               text = "Thank you for answering my questions. "
                 + copingResult(copeAnswers);
+              
               break;
           }
           text = coping[copingCount].question;
@@ -210,6 +211,7 @@ function copingResult (answers) {
             score += 1;
         }
     }
+    console.log(score);
     
     if (score > 11 && score <= 16) {
         result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
