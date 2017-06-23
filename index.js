@@ -97,7 +97,7 @@ var monitoring = [];
 var ref = admin.database().ref("/").child('monitoring');
 ref.on("value", function(snapshot) {
   var obj = snapshot.val();
-  for (var i in obj ) {
+  for (var i = 0; i < obj.length; i++) {
          monitoring.push(obj[i]);
   }
 }, function (errorObject) {
