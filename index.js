@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -77,8 +77,8 @@ restService.use(bodyParser.urlencoded({
 }));
 
 restService.use(bodyParser.json());
-*/
 
+/*
 'use strict';
 
 const express = require('express');
@@ -189,7 +189,7 @@ restService.use(bodyParser.urlencoded({
     extended: true
 }));
 
-restService.use(bodyParser.json());
+restService.use(bodyParser.json());*/
 
 restService.post('/reply', function (req, res) {
     var action = req.body.result.action;
