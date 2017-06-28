@@ -281,4 +281,4 @@ getAllQuestion().then(function(returnVal){
         console.log("Server up and running");
     });
 
-})
+});
