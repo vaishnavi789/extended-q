@@ -228,9 +228,9 @@ getAllQuestion().then(function(returnVal){
                 var sIndex = Math.floor(sDecider);
                 var pDecider = Math.random() * proteins.length;
                 var pIndex = Math.floor(pDecider);
-                text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex]
-                    + ", 1/4 with " + starches[sIndex] + " , and 1/4 with " + proteins[pIndex]
-                    + ". If you want to change the plate, just say \"make another plate\".";;
+                text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex].type
+                    + ", 1/4 with " + starches[sIndex].type + " , and 1/4 with " + proteins[pIndex].type
+                    + ". If you want to change the plate, just say \"make another plate\".";
                 break;
 
             case "restart":
