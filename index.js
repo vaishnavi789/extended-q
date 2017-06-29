@@ -94,11 +94,11 @@ function getAllQuestion() {
  function monitorResult(ate, sugar, exercise, weight) {
     var result = "";
     if (ate == "yes" && sugar >= 8.5) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some light exercise, like taking a brisk walk. ";
     } else if (ate == "yes" && sugar < 8.5) {
         result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
     } else if (ate == "no" && sugar > 7) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some light exercise, like taking a brisk walk. ";
     } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
         result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
     } else {
