@@ -198,7 +198,7 @@ getAllQuestion().then(function(returnVal){
                     //+ "What else can I do for you?";
                     break;
                 }
-                text = monitoring[monitorCount].question;
+                text = monitoring[monitorCount].title;
 
                 if (req.body.result.parameters.number.length != 0) {
                     monitorAnswers.push(req.body.result.parameters.number);
@@ -227,7 +227,7 @@ getAllQuestion().then(function(returnVal){
 
                     break;
                 }
-                text = coping[copingCount].question;
+                text = coping[copingCount].title;
 
                 if (req.body.result.parameters.frequency.length != 0) {
                     copeAnswers.push(req.body.result.parameters.frequency);
