@@ -16,22 +16,6 @@ var vegetables = [];
 var starches = [];
 var proteins = [];
 
-// var ref = admin.database().ref("/").child('monitoring');
-// var cope = admin.database().ref("/").child('coping');
-
-// var ref1 = ref.on("value");
-
-// var ref1Then = ref1.then(function(snapshot) {
-//   var obj = snapshot.val();
-//   for (var i in obj) {
-//          monitoring.push(obj[i]);
-//   }
-// });
-// ref1.catch(function (errorObject) {
-// console.log("The read failed: " + errorObject.code);
-// });
-
-
 function getAllQuestion() {
     var ref = admin.database().ref("/").child('monitoring');
     var afterMonitoring = ref.once('value').then(function (snapshot) {
@@ -107,48 +91,6 @@ function getAllQuestion() {
     return afterStarches;
 }
 
-function monitorResult(ate, sugar, exercise, weight) {
-    var result = "";
-    if (ate == "yes" && sugar >= 8.5) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate == "yes" && sugar < 8.5) {
-        result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
-    } else if (ate == "no" && sugar > 7) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
-        result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
-    } else {
-        result += "Your blood sugar is too low. I suggest eating a small amount of carbs. ";
-    }
-
-    return result;
-}
-
-function copingResult(answers) {
-    var score = 0;
-    var result = "";
-    for (var i = 0; i < answers.length; i++) {
-        if (answers[i] == "no") {
-            score += 2;
-        } else if (answers[i] == "often") {
-            score += 2;
-        } else if (answers[i] == "sometimes") {
-            score += 1;
-        }
-    }
-    console.log(score);
-
-    if (score > 11 && score <= 16) {
-        result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
-    } else if (score >= 6 && score <= 11) {
-        result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
-    } else {
-        result += "You seem to be doing all right! I'm glad.";
-    }
-
-    return result;
-}
-
 var monitorCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
@@ -170,7 +112,6 @@ getAllQuestion().then(function(returnVal){
     restService.use(bodyParser.json());
     restService.post('/reply', function (req, res) {
         var action = req.body.result.action;
-        //var previous_action = req.body.result.parameters.monitorAction;
         var text;
 
         switch (action) {
@@ -272,6 +213,47 @@ getAllQuestion().then(function(returnVal){
             source: "survey-demo-app"
         });
     });
+ 
+ function monitorResult(ate, sugar, exercise, weight) {
+    var result = "";
+    if (ate == "yes" && sugar >= 8.5) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate == "yes" && sugar < 8.5) {
+        result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
+    } else if (ate == "no" && sugar > 7) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
+        result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
+    } else {
+        result += "Your blood sugar is too low. I suggest eating a small amount of carbs. ";
+    }
+    return result;
+}
+
+function copingResult(answers) {
+    var score = 0;
+    var result = "";
+    for (var i = 0; i < answers.length; i++) {
+        if (answers[i] == "no") {
+            score += 2;
+        } else if (answers[i] == "often") {
+            score += 2;
+        } else if (answers[i] == "sometimes") {
+            score += 1;
+        }
+    }
+    console.log(score);
+
+    if (score > 11 && score <= 16) {
+        result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
+    } else if (score >= 6 && score <= 11) {
+        result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
+    } else {
+        result += "You seem to be doing all right! I'm glad.";
+    }
+
+    return result;
+}
 
     restService.get('/', function (req, res) {
         return "Hello and welcome.";
