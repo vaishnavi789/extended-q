@@ -142,6 +142,7 @@ getAllQuestion().then(function(returnVal){
     coping = returnVal.coping
     vegetables = returnVal.vegetables
     proteins = returnVal.proteins
+    starches = returnVal.starches
 
 
     const restService = express();
