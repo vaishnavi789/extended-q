@@ -91,6 +91,47 @@ function getAllQuestion() {
     return afterStarches;
 }
 
+ function monitorResult(ate, sugar, exercise, weight) {
+    var result = "";
+    if (ate == "yes" && sugar >= 8.5) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate == "yes" && sugar < 8.5) {
+        result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
+    } else if (ate == "no" && sugar > 7) {
+        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
+    } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
+        result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
+    } else {
+        result += "Your blood sugar is too low. I suggest eating a small amount of carbs. ";
+    }
+    return result;
+}
+
+function copingResult(answers) {
+    var score = 0;
+    var result = "";
+    for (var i = 0; i < answers.length; i++) {
+        if (answers[i] == "no") {
+            score += 2;
+        } else if (answers[i] == "often") {
+            score += 2;
+        } else if (answers[i] == "sometimes") {
+            score += 1;
+        }
+    }
+    console.log(score);
+
+    if (score > 11 && score <= 16) {
+        result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
+    } else if (score >= 6 && score <= 11) {
+        result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
+    } else {
+        result += "You seem to be doing all right! I'm glad.";
+    }
+
+    return result;
+}
+
 var monitorCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
@@ -133,7 +174,7 @@ getAllQuestion().then(function(returnVal){
                     var medication = monitorAnswers[2];
                     var exercise = monitorAnswers[3];
                     var weight = monitorAnswers[4];
-
+                    console.log(monitorAnswers);
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
@@ -213,47 +254,6 @@ getAllQuestion().then(function(returnVal){
             source: "survey-demo-app"
         });
     });
- 
- function monitorResult(ate, sugar, exercise, weight) {
-    var result = "";
-    if (ate == "yes" && sugar >= 8.5) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate == "yes" && sugar < 8.5) {
-        result += "Your blood sugar level of " + sugar + " is normal. That's great! ";
-    } else if (ate == "no" && sugar > 7) {
-        result += "Your blood sugar level of " + sugar + " is rather high. Try some exercise. ";
-    } else if (ate == "no" && sugar >= 4 && sugar <= 7) {
-        result += "Your blood sugar level of " + sugar + " is normal. Keep it up! ";
-    } else {
-        result += "Your blood sugar is too low. I suggest eating a small amount of carbs. ";
-    }
-    return result;
-}
-
-function copingResult(answers) {
-    var score = 0;
-    var result = "";
-    for (var i = 0; i < answers.length; i++) {
-        if (answers[i] == "no") {
-            score += 2;
-        } else if (answers[i] == "often") {
-            score += 2;
-        } else if (answers[i] == "sometimes") {
-            score += 1;
-        }
-    }
-    console.log(score);
-
-    if (score > 11 && score <= 16) {
-        result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
-    } else if (score >= 6 && score <= 11) {
-        result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
-    } else {
-        result += "You seem to be doing all right! I'm glad.";
-    }
-
-    return result;
-}
 
     restService.get('/', function (req, res) {
         return "Hello and welcome.";
