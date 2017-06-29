@@ -176,8 +176,8 @@ getAllQuestion().then(function(returnVal){
                     var exercise = monitorAnswers[3];
                     var weight = monitorAnswers[4];
                     console.log(monitorAnswers);
-                    text = "I'll get this logged for you ASAP. "
-                        + monitorResult(ate, sugarLevel, exercise, weight);
+                    text = "I'll get this logged for you ASAP. ";
+                        //+ monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
                     break;
                 }
