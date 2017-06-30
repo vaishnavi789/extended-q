@@ -91,6 +91,14 @@ function getAllQuestion() {
     return afterStarches;
 }
 
+
+var monitorCount = 0;
+var copingCount = 0;
+var monitorAnswers = [];
+var copeAnswers = [];
+var date = 0;
+var score = 0;
+
  function monitorResult(ate, sugar, exercise, weight) {
     var result = "";
     if (ate == "yes" && sugar >= 8.5) {
@@ -108,7 +116,6 @@ function getAllQuestion() {
 }
 
 function copingResult(answers) {
-    var score = 0;
     var result = "";
     for (var i = 0; i < answers.length; i++) {
         if (answers[i] == "no") {
@@ -131,12 +138,6 @@ function copingResult(answers) {
 
     return result;
 }
-
-var monitorCount = 0;
-var copingCount = 0;
-var monitorAnswers = [];
-var copeAnswers = [];
-var date = 0;
 
 function writeMonAnswers(monitorAnswers) {
     var fb = admin.database().ref('/monitoringAnswers/patient1');         
@@ -166,6 +167,7 @@ function writeCopeAnswers(copeAnswers) {
            seven: copeAnswers[6],
            eight: copeAnswers[7],
 //            nine: copeAnswers[8],
+           score: 
            timestamp: date
         }).then(function(ref) {
            console.log(ref);
