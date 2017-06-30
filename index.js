@@ -193,7 +193,7 @@ getAllQuestion().then(function(returnVal){
                     date = req.body.timestamp;
                     console.log(date);
                      
-                    writeData(monitorAnswers);
+                    writeAnswers(monitorAnswers);
                      
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
