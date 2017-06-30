@@ -141,7 +141,7 @@ var date = 0;
 function writeAnswers (monitorAnswers, copeAnswers) {
     var fb = firebase.database().ref('/').child('/monitoringAnswers').child('/patient1');         
         fb.push({
-           [date]: monitorAnswers;
+           date: monitorAnswers;
         }).then(function(ref) {
            console.log(ref);
         }, function(error) {
