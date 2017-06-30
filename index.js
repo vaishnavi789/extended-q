@@ -138,7 +138,7 @@ var monitorAnswers = [];
 var copeAnswers = [];
 var date = 0;
 
-function writeAnswers(monitorAnswers) {
+function writeMonAnswers(monitorAnswers) {
     var fb = admin.database().ref('/monitoringAnswers/patient1');         
         fb.push({
            one: monitorAnswers[0],
@@ -146,6 +146,26 @@ function writeAnswers(monitorAnswers) {
            three: monitorAnswers[2],
            four: monitorAnswers[3],
            five: monitorAnswers[4],
+           timestamp: date
+        }).then(function(ref) {
+           console.log(ref);
+        }, function(error) {
+           console.log("Error:", error);
+        });
+}
+
+function writeCopeAnswers(copeAnswers) {
+    var fb = admin.database().ref('/copingAnswers/patient1');         
+        fb.push({
+           one: copeAnswers[0],
+           two: copeAnswers[1],
+           three: copeAnswers[2],
+           four: copeAnswers[3],
+           five: copeAnswers[4],
+           six: copeAnswers[5],
+           seven: copeAnswers[6],
+           eight: copeAnswers[7],
+//            nine: copeAnswers[8],
            timestamp: date
         }).then(function(ref) {
            console.log(ref);
@@ -196,7 +216,7 @@ getAllQuestion().then(function(returnVal){
                     date = req.body.timestamp;
                     console.log(date);
                      
-                    writeAnswers(monitorAnswers);
+                    writeMonAnswers(monitorAnswers);
                      
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
