@@ -247,8 +247,9 @@ getAllQuestion().then(function(returnVal){
                         copeAnswers.push(req.body.result.parameters.yesno);
                     }
                     copingCount = 0;
-
+                    
                     console.log(copeAnswers);
+                    date = req.body.timestamp;
                     writeCopeAnswers(copeAnswers) 
                     text = "Thank you for answering my questions. "
                         + copingResult(copeAnswers);
