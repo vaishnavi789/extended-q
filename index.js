@@ -249,6 +249,7 @@ getAllQuestion().then(function(returnVal){
                     copingCount = 0;
 
                     console.log(copeAnswers);
+                    writeCopeAnswers(copeAnswers) 
                     text = "Thank you for answering my questions. "
                         + copingResult(copeAnswers);
 
