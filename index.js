@@ -6,8 +6,8 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./healthycoping-f6c2f-firebase-adminsdk-2k6pw-29793bc767.json");
 
 admin.initializeApp({
- credential: admin.credential.cert(serviceAccount),
- databaseURL: "https://healthycoping-f6c2f.firebaseio.com/"
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://healthycoping-f6c2f.firebaseio.com/"
 });
 
 var monitoring = [];
@@ -18,7 +18,7 @@ var proteins = [];
 
 function getAllQuestion() {
     var ref = admin.database().ref("/").child('monitoring');
-    var afterMonitoring = ref.once('value').then(function (snapshot) {
+    var afterMonitoring = ref.once('value').then(function(snapshot) {
         var monitoringQuestions = []
         var obj = snapshot.val();
         for (var i in obj) {
@@ -26,63 +26,63 @@ function getAllQuestion() {
         }
         return monitoringQuestions;
     })
-    var afterCoping = afterMonitoring.then(function (monitoringQuestions) {
+    var afterCoping = afterMonitoring.then(function(monitoringQuestions) {
         var data = {}
         data['monitoring'] = monitoringQuestions
         data['coping'] = []
         var cope = admin.database().ref("/").child('coping');
-        var finishedCoping = cope.once('value').then(function (snapshot) {
-            var copingQuestions =[]
+        var finishedCoping = cope.once('value').then(function(snapshot) {
+            var copingQuestions = []
             var obj = snapshot.val();
             for (var i in obj) {
                 copingQuestions.push(obj[i]);
             }
             return copingQuestions;
         })
-        var returnedData = finishedCoping.then(function (copingQuestions) {
+        var returnedData = finishedCoping.then(function(copingQuestions) {
             data['coping'] = copingQuestions;
             return data;
         })
         return returnedData
     });
-    var afterVeggies = afterCoping.then(function(returnedData){
-        var ref = admin.database().ref("/").child('vegetables').once('value').then(function (snapshot) {
+    var afterVeggies = afterCoping.then(function(returnedData) {
+        var ref = admin.database().ref("/").child('vegetables').once('value').then(function(snapshot) {
             var veggiesList = []
             var obj = snapshot.val();
             for (var i in obj) {
                 veggiesList.push(obj[i]);
             }
             return veggiesList;
-        }).then(function (returnedVeggieList) {
+        }).then(function(returnedVeggieList) {
             returnedData.vegetables = returnedVeggieList;
             return returnedData
         });
         return ref;
     });
 
-    var afterProtein = afterVeggies.then(function (returnedData) {
-        var ref = admin.database().ref("/").child('proteins').once('value').then(function (snapshot) {
+    var afterProtein = afterVeggies.then(function(returnedData) {
+        var ref = admin.database().ref("/").child('proteins').once('value').then(function(snapshot) {
             var proteinList = []
             var obj = snapshot.val();
             for (var i in obj) {
                 proteinList.push(obj[i]);
             }
             return proteinList;
-        }).then(function (returnedProteinList) {
+        }).then(function(returnedProteinList) {
             returnedData.proteins = returnedProteinList;
             return returnedData
         });
         return ref;
     });
-    var afterStarches = afterVeggies.then(function (returnedData) {
-        var ref = admin.database().ref("/").child('starches').once('value').then(function (snapshot) {
+    var afterStarches = afterVeggies.then(function(returnedData) {
+        var ref = admin.database().ref("/").child('starches').once('value').then(function(snapshot) {
             var starchesList = []
             var obj = snapshot.val();
             for (var i in obj) {
                 starchesList.push(obj[i]);
             }
             return starchesList;
-        }).then(function (returnedStarchesList) {
+        }).then(function(returnedStarchesList) {
             returnedData.starches = returnedStarchesList;
             return returnedData
         });
@@ -99,7 +99,7 @@ var copeAnswers = [];
 var date = 0;
 var score = 0;
 
- function monitorResult(ate, sugar, exercise, weight) {
+function monitorResult(ate, sugar, exercise, weight) {
     var result = "";
     if (ate == "yes" && sugar >= 8.5) {
         result += "Your blood sugar level of " + sugar + " is rather high. Try some light exercise, like taking a brisk walk. ";
@@ -140,43 +140,43 @@ function copingResult(answers) {
 }
 
 function writeMonAnswers(monitorAnswers) {
-    var fb = admin.database().ref('/monitoringAnswers/patient1');         
-        fb.push({
-           one: monitorAnswers[0],
-           two: monitorAnswers[1],
-           three: monitorAnswers[2],
-           four: monitorAnswers[3],
-           five: monitorAnswers[4],
-           timestamp: date
-        }).then(function(ref) {
-           console.log(ref);
-        }, function(error) {
-           console.log("Error:", error);
-        });
+    var fb = admin.database().ref('/monitoringAnswers/patient1');
+    fb.push({
+        one: monitorAnswers[0],
+        two: monitorAnswers[1],
+        three: monitorAnswers[2],
+        four: monitorAnswers[3],
+        five: monitorAnswers[4],
+        timestamp: date
+    }).then(function(ref) {
+        console.log(ref);
+    }, function(error) {
+        console.log("Error:", error);
+    });
 }
 
 function writeCopeAnswers(copeAnswers) {
-    var fb = admin.database().ref('/copingAnswers/patient1');         
-        fb.push({
-           one: copeAnswers[0],
-           two: copeAnswers[1],
-           three: copeAnswers[2],
-           four: copeAnswers[3],
-           five: copeAnswers[4],
-           six: copeAnswers[5],
-           seven: copeAnswers[6],
-           eight: copeAnswers[7],
-//            nine: copeAnswers[8],
-           score: score,
-           timestamp: date
-        }).then(function(ref) {
-           console.log(ref);
-        }, function(error) {
-           console.log("Error:", error);
-        });
+    var fb = admin.database().ref('/copingAnswers/patient1');
+    fb.push({
+        one: copeAnswers[0],
+        two: copeAnswers[1],
+        three: copeAnswers[2],
+        four: copeAnswers[3],
+        five: copeAnswers[4],
+        six: copeAnswers[5],
+        seven: copeAnswers[6],
+        eight: copeAnswers[7],
+        //            nine: copeAnswers[8],
+        score: score,
+        timestamp: date
+    }).then(function(ref) {
+        console.log(ref);
+    }, function(error) {
+        console.log("Error:", error);
+    });
 }
 
-getAllQuestion().then(function(returnVal){
+getAllQuestion().then(function(returnVal) {
     monitoring = returnVal.monitoring
     coping = returnVal.coping
     vegetables = returnVal.vegetables
@@ -191,7 +191,7 @@ getAllQuestion().then(function(returnVal){
     }));
 
     restService.use(bodyParser.json());
-    restService.post('/reply', function (req, res) {
+    restService.post('/reply', function(req, res) {
         var action = req.body.result.action;
         var text;
 
@@ -217,11 +217,11 @@ getAllQuestion().then(function(returnVal){
                     console.log(monitorAnswers);
                     date = req.body.timestamp;
                     console.log(date);
-                     
+
                     writeMonAnswers(monitorAnswers);
-                     
-                    text = "I'll get this logged for you ASAP. "
-                        + monitorResult(ate, sugarLevel, exercise, weight);
+
+                    text = "I'll get this logged for you ASAP. " +
+                        monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
                     break;
                 }
@@ -247,12 +247,12 @@ getAllQuestion().then(function(returnVal){
                         copeAnswers.push(req.body.result.parameters.yesno);
                     }
                     copingCount = 0;
-                    
+
                     console.log(copeAnswers);
                     date = req.body.timestamp;
-                    writeCopeAnswers(copeAnswers) 
-                    text = "Thank you for answering my questions. "
-                        + copingResult(copeAnswers);
+                    writeCopeAnswers(copeAnswers)
+                    text = "Thank you for answering my questions. " +
+                        copingResult(copeAnswers);
 
                     break;
                 }
@@ -267,7 +267,7 @@ getAllQuestion().then(function(returnVal){
                 copingCount++;
                 break;
 
-            //dietary advice action based on the diabetes.org "food plate" page.
+                //dietary advice action based on the diabetes.org "food plate" page.
             case "food.plate":
                 var vDecider = Math.random() * vegetables.length;
                 var vIndex = Math.floor(vDecider);
@@ -275,9 +275,9 @@ getAllQuestion().then(function(returnVal){
                 var sIndex = Math.floor(sDecider);
                 var pDecider = Math.random() * proteins.length;
                 var pIndex = Math.floor(pDecider);
-                text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex].type
-                    + ", 1/4 with " + starches[sIndex].type + " , and 1/4 with " + proteins[pIndex].type
-                    + ". If you want to change the plate, just say \"make another plate\".";
+                text = "I recommend filling 1/2 of your plate with " + vegetables[vIndex].type +
+                    ", 1/4 with " + starches[sIndex].type + " , and 1/4 with " + proteins[pIndex].type +
+                    ". If you want to change the plate, just say \"make another plate\".";
                 break;
 
             case "restart":
@@ -288,8 +288,8 @@ getAllQuestion().then(function(returnVal){
                 break;
 
             case "help":
-                text = "I can assist you with monitoring your health, emotional coping with your diabetes, and food recommendations."
-                    + " Just say any of the key words and we can get started!";
+                text = "I can assist you with monitoring your health, emotional coping with your diabetes, and food recommendations." +
+                    " Just say any of the key words and we can get started!";
                 break;
 
             default:
@@ -302,11 +302,11 @@ getAllQuestion().then(function(returnVal){
         });
     });
 
-    restService.get('/', function (req, res) {
+    restService.get('/', function(req, res) {
         return "Hello and welcome.";
     });
 
-    restService.listen((process.env.PORT || 8085), function () {
+    restService.listen((process.env.PORT || 8085), function() {
         console.log("Server up and running");
     });
 
