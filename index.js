@@ -139,8 +139,8 @@ var copeAnswers = [];
 var date = 0;
 
 function writeAnswers (monitorAnswers, copeAnswers) {
-    var fb = firebase.database().ref('/').child('/monitoringAnswers').child('/patient1');         
-        fb.push({
+    var fb = firebase.database().ref('/monitoringAnswers/patient1');         
+        fb.set({
            date: monitorAnswers;
         }).then(function(ref) {
            console.log(ref);
