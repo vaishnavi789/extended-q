@@ -138,16 +138,18 @@ var monitorAnswers = [];
 var copeAnswers = [];
 var date = 0;
 
-// function writeAnswers(monitorAnswers, copeAnswers) {
-//     var fb = firebase.database().ref('/monitoringAnswers/patient1');         
-//         fb.set({
-//            date: monitorAnswers;
-//         }).then(function(ref) {
-//            console.log(ref);
-//         }, function(error) {
-//            console.log("Error:", error);
-//         });
-// }
+function writeAnswers(monitorAnswers, copeAnswers) {
+    var fb = firebase.database().ref('/monitoringAnswers/patient1');         
+        fb.push({
+           one: monitorAnswers[0],
+           two: monitorAnswers[1],
+           three: monitorAnswers[2]
+        }).then(function(ref) {
+           console.log(ref);
+        }, function(error) {
+           console.log("Error:", error);
+        });
+}
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
