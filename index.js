@@ -136,6 +136,18 @@ var monitorCount = 0;
 var copingCount = 0;
 var monitorAnswers = [];
 var copeAnswers = [];
+var date = 0;
+
+function writeAnswers (monitorAnswers, copeAnswers) {
+    var fb = firebase.database().ref('/').child('/monitoringAnswers').child('/patient1');         
+        fb.push({
+           [date]: monitorAnswers;
+        }).then(function(ref) {
+           console.log(ref);
+        }, function(error) {
+           console.log("Error:", error);
+        });
+}
 
 getAllQuestion().then(function(returnVal){
     monitoring = returnVal.monitoring
@@ -176,6 +188,9 @@ getAllQuestion().then(function(returnVal){
                     var exercise = monitorAnswers[3];
                     var weight = monitorAnswers[4];
                     console.log(monitorAnswers);
+                    date = req.body.timestamp;
+                    console.log(date);
+                     
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
                     //+ "What else can I do for you?";
