@@ -138,7 +138,7 @@ var monitorAnswers = [];
 var copeAnswers = [];
 var date = 0;
 
-function writeAnswers(monitorAnswers, copeAnswers) {
+function writeAnswers(monitorAnswers) {
     var fb = firebase.database().ref('/monitoringAnswers/patient1');         
         fb.push({
            one: monitorAnswers[0],
@@ -192,6 +192,8 @@ getAllQuestion().then(function(returnVal){
                     console.log(monitorAnswers);
                     date = req.body.timestamp;
                     console.log(date);
+                     
+                    writeData(monitorAnswers);
                      
                     text = "I'll get this logged for you ASAP. "
                         + monitorResult(ate, sugarLevel, exercise, weight);
