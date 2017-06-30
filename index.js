@@ -139,7 +139,7 @@ var copeAnswers = [];
 var date = 0;
 
 function writeAnswers(monitorAnswers) {
-    var fb = firebase.database().ref('/monitoringAnswers/patient1');         
+    var fb = admin.database().ref('/monitoringAnswers/patient1');         
         fb.push({
            one: monitorAnswers[0],
            two: monitorAnswers[1],
