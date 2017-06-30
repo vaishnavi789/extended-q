@@ -167,7 +167,7 @@ function writeCopeAnswers(copeAnswers) {
            seven: copeAnswers[6],
            eight: copeAnswers[7],
 //            nine: copeAnswers[8],
-           score: 
+           score: score,
            timestamp: date
         }).then(function(ref) {
            console.log(ref);
