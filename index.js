@@ -143,7 +143,10 @@ function writeAnswers(monitorAnswers) {
         fb.push({
            one: monitorAnswers[0],
            two: monitorAnswers[1],
-           three: monitorAnswers[2]
+           three: monitorAnswers[2],
+           four: monitorAnswers[3],
+           five: monitorAnswers[4],
+           timestamp: date
         }).then(function(ref) {
            console.log(ref);
         }, function(error) {
