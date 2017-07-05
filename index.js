@@ -263,7 +263,8 @@ getAllQuestion().then(function(returnVal) {
                     text = "Thank you for answering my questions. " +
                         copingResult(copeAnswers);
                     writeCopeAnswers(copeAnswers);
-
+                    score = 0; 
+                    
                     break;
                 }
                 text = coping[copingCount].title;
