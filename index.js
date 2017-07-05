@@ -142,11 +142,11 @@ function copingResult(answers) {
 function writeMonAnswers(monitorAnswers) {
     var fb = admin.database().ref('/monitoringAnswers/patient1');
     fb.push({
-        one: monitorAnswers[0],
-        two: monitorAnswers[1],
-        three: monitorAnswers[2],
-        four: monitorAnswers[3],
-        five: monitorAnswers[4],
+        ate: monitorAnswers[0],
+        glucose: monitorAnswers[1],
+        medication: monitorAnswers[2],
+        exercise: monitorAnswers[3],
+        weight: monitorAnswers[4],
         timestamp: date
     }).then(function(ref) {
         console.log(ref);
