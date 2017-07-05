@@ -128,7 +128,7 @@ function copingResult(answers) {
     }
     console.log(score);
 
-    if (score > 11 && score <= 16) {
+    if (score > 11 && score <= 18) {
         result += "You are showing signs of severe depression. Please consider asking your doctor for help. ";
     } else if (score >= 6 && score <= 11) {
         result += "You are showing signs of moderate depression. Consider discussing this with your doctor.";
@@ -158,15 +158,15 @@ function writeMonAnswers(monitorAnswers) {
 function writeCopeAnswers(copeAnswers) {
     var fb = admin.database().ref('/copingAnswers/patient1');
     fb.push({
-        one: copeAnswers[0],
-        two: copeAnswers[1],
-        three: copeAnswers[2],
-        four: copeAnswers[3],
-        five: copeAnswers[4],
-        six: copeAnswers[5],
-        seven: copeAnswers[6],
-        eight: copeAnswers[7],
-        //            nine: copeAnswers[8],
+        motivated: copeAnswers[0],
+        down: copeAnswers[1],
+        relax: copeAnswers[2],
+        interest: copeAnswers[3],
+        outside: copeAnswers[4],
+        social: copeAnswers[5],
+        lonely: copeAnswers[6],
+        apetite: copeAnswers[7],
+        negative: copeAnswers[8],
         score: score,
         timestamp: date
     }).then(function(ref) {
