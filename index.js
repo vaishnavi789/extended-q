@@ -250,9 +250,10 @@ getAllQuestion().then(function(returnVal) {
 
                     console.log(copeAnswers);
                     date = req.body.timestamp;
-                    writeCopeAnswers(copeAnswers)
+                    
                     text = "Thank you for answering my questions. " +
                         copingResult(copeAnswers);
+                    writeCopeAnswers(copeAnswers);
 
                     break;
                 }
