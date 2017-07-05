@@ -297,6 +297,7 @@ getAllQuestion().then(function(returnVal) {
                 monitorAnswers = [];
                 console.log(monitorAnswers);
                 copeAnswers = [];
+                score = 0;
                 text = "Sure thing. I've reset all the surveys so you can start from the beginning. What would you like to do now?";
                 break;
 
