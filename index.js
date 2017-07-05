@@ -118,12 +118,21 @@ function monitorResult(ate, sugar, exercise, weight) {
 function copingResult(answers) {
     var result = "";
     for (var i = 0; i < answers.length; i++) {
-        if (answers[i] == "no") {
-            score += 2;
-        } else if (answers[i] == "often") {
-            score += 2;
-        } else if (answers[i] == "sometimes") {
-            score += 1;
+        if (i == 4 || i == 5) {
+            if (answers[i] == "never") {
+                score += 2;
+            } else if (answers[i] == "sometimes") {
+                score += 1;
+            }
+        }
+        else {
+            if (answers[i] == "no") {
+                score += 2;
+            } else if (answers[i] == "often") {
+                score += 2;
+            } else if (answers[i] == "sometimes") {
+                score += 1;
+            }
         }
     }
     console.log(score);
